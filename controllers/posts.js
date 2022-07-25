@@ -14,8 +14,6 @@ function index(req, res) {
 }
 
 function create(req, res) {
-  console.log('hits create controller function')
-  console.log(`req.user.profile = ${req.user.profile}`)
   req.body.author = req.user.profile
   Post.create(req.body)
   .then(post => {
@@ -34,8 +32,6 @@ function create(req, res) {
 function deletePost(req, res) {
   Post.findById(req.params.id)
   .then(post => {
-    console.log(post.author._id)
-    console.log()
     if (post.author._id.equals(req.user.profile)){
       Post.findByIdAndDelete(post._id)
       .then(deletedPost => {
@@ -54,9 +50,9 @@ function deletePost(req, res) {
 function update(req, res) {
   Post.findById(req.params.id)
   .then(post => {
-    if (post.owner._id.equals(req.user.profile)){
+    if (post.author._id.equals(req.user.profile)){
       Post.findByIdAndUpdate(req.params.id, req.body, {new: true})
-      .populate('owner')
+      .populate('author')
       .then(updatedPost => {
         res.json(updatedPost)
       })
