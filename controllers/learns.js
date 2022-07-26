@@ -23,16 +23,21 @@ function create(req, res) {
 }
 
 function deleteLearns(req, res) {
-  Learn.findById(req.params.id)
-  .then(learn => {
-    if (req.user.profile){
-      Learn.findByIdAndDelete(learn._id)
-      .then(deletedLearns => {
-        res.json(deletedLearns)
-      })
-    } else { 
-      res.status(401).json({err: 'Not authorized'})
-    }
+  console.log(req.params.id)
+  Learn.findByIdAndDelete(req.params.id)
+    .then(deletedLearns => {
+      res.json(deletedLearns)
+    })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
+}
+
+function update(req, res) {
+  Learn.findByIdAndUpdate(req.params.id, req.body, {new: true})
+  .then(updateLearn => {
+        res.json(updateLearn)
   })
   .catch(err => {
     console.log(err)
@@ -43,5 +48,6 @@ function deleteLearns(req, res) {
 export {
   create,
   index,
-  deleteLearns as delete
+  deleteLearns as delete,
+  update,
 }
