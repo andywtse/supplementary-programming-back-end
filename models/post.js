@@ -3,8 +3,7 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const replySchema = new Schema({
-  content: String,
-  author: {type: mongoose.Schema.Types.ObjectId, ref: 'Profile' }
+  content: String
 }, {
   timestamps: true
 })

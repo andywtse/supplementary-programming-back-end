@@ -64,9 +64,25 @@ function update(req, res) {
   })
 }
 
+function createReply(req, res) {
+  Post.findById(req.params.id)
+  .then(post => {
+    post.replies.push(req.body)
+    post.save()
+    .then(() => {
+      res.json(post)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
+}
+
 export {
   index,
   create,
   deletePost as delete,
-  update
+  update,
+  createReply
 }
