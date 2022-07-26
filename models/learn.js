@@ -1,9 +1,10 @@
 import mongoose from 'mongoose'
 
 const learnSchema = new mongoose.Schema({
+  header: String,
   title: String, 
   description: String,
-  url: [String]
+  url: [String],
 },{
   timestamps: true,
 })
