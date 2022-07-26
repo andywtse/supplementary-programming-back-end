@@ -13,7 +13,7 @@ router.use(decodeUserFromToken)
 router.post('/', checkAuth, postController.create)
 router.delete('/:id', checkAuth, postController.delete)
 router.put('/:id',checkAuth, postController.update)
-
+router.post('/:id/replies', checkAuth, postController.createReply)
 
 
 export { router }
