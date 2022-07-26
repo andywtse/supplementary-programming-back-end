@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import * as learnCtrl from '../controllers/learn.js'
+import * as learnCtrl from '../controllers/learns.js'
 import { decodeUserFromToken, checkAuth } from '../middleware/auth.js'
 
 const router = Router()
@@ -9,7 +9,8 @@ const router = Router()
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
-router.post('/', checkAuth, profilesCtrl.create)
+router.post('/', checkAuth, learnCtrl.create)
+router.get('/', checkAuth, learnCtrl.index)
 
 
 export { router }
