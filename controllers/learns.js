@@ -34,8 +34,20 @@ function deleteLearns(req, res) {
   })
 }
 
+function update(req, res) {
+  Learn.findByIdAndUpdate(req.params.id, req.body, {new: true})
+  .then(updateLearn => {
+        res.json(updateLearn)
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
+}
+
 export {
   create,
   index,
-  deleteLearns as delete
+  deleteLearns as delete,
+  update,
 }
