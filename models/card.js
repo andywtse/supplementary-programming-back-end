@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const cardSchema = new mongoose.Schema({
+const cardsSchema = new mongoose.Schema({
   header: String,
   title: String, 
   description: String,

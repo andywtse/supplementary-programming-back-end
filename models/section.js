@@ -4,6 +4,7 @@ const Schema = mongoose.Schema
 
 const sectionsSchema = new Schema({
   title: String,
+  description: String,
   cards: [{type: mongoose.Schema.Types.ObjectId, ref: "Cards"}] 
 }, {
   timestamps: true

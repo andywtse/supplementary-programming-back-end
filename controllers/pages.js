@@ -1,6 +1,6 @@
-import { Pages } from '../models/Pages.js'
-import { Sections } from '../models/Sections.js'
-import { Cards } from '../models/Cards.js'
+import { Pages } from '../models/page.js'
+import { Sections } from '../models/section.js'
+import { Cards } from '../models/card.js'
 
 function index(req, res) {
   Pages.find({})
