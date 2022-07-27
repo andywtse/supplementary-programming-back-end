@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, lowercase: true, unique: true },
   password: String,
   profile: { type: mongoose.Schema.Types.ObjectId, ref: 'Profile' },
+  admin: Boolean
 }, {
   timestamps: true,
 })

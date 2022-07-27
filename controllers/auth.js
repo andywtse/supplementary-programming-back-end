@@ -10,6 +10,11 @@ function signup(req, res) {
     } else if (!process.env.SECRET) {
       throw new Error('no SECRET in .env file')
     } else {
+      if(req.body.code === 'BEN10'){
+        req.body.admin = true;
+      }else {
+        req.body.admin = false;
+      }
       Profile.create(req.body)
       .then(newProfile => {
         req.body.profile = newProfile._id
