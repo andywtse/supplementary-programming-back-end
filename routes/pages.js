@@ -18,7 +18,7 @@ router.post('/section/:id/card', checkAuth, pageController.createCard)
 
 router.delete('/:id', checkAuth, pageController.deletePage)
 router.delete('/section/:id', checkAuth, pageController.deleteSection)
-router.delete('/sectionscard/:id', checkAuth, pageController.deleteCard)
+router.delete('/section/card/:id', checkAuth, pageController.deleteCard)
 
 router.put('/:id', checkAuth, pageController.updatePage)
 router.put('/section/:id', checkAuth, pageController.updateSection)

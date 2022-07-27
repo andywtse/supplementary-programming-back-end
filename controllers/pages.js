@@ -37,6 +37,7 @@ function getCards(req, res) {
   Sections.findById(req.params.id)
     .populate('cards')
     .then(section => {
+      console.log(section.cards)
       res.json(section.cards)
     })
     .catch(err => {
@@ -83,7 +84,7 @@ function createCard(req, res) {
           section.cards.push(card)
           section.save()
             .then(() => {
-              res.json(section)
+              res.json(card)
             })
 
         })

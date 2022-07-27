@@ -4,7 +4,7 @@ const cardsSchema = new mongoose.Schema({
   header: String,
   title: String, 
   description: String,
-  url: [String],
+  url: String,
 },{
   timestamps: true,
 })
