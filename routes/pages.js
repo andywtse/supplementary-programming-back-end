@@ -6,6 +6,8 @@ const router = Router()
 
 /*---------- Public Routes ----------*/
 router.get('/', pageController.index)
+router.get('/:id', pageController.getSections)
+router.get('/section/:id', pageController.getCards)
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)

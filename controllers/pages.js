@@ -21,6 +21,30 @@ function index(req, res) {
     })
 }
 
+function getSections(req, res) {
+  Pages.findById(req.params.id)
+    .populate('sections')
+    .then(page => {
+      res.json(page.sections)
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({ err: err.errmsg })
+    })
+}
+
+function getCards(req, res) {
+  Sections.findById(req.params.id)
+    .populate('cards')
+    .then(section => {
+      res.json(section.cards)
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({ err: err.errmsg })
+    })
+}
+
 function createPage(req, res) {
   Pages.create(req.body)
     .then(page => {
@@ -138,6 +162,8 @@ function updateCard(req, res) {
 
 export {
   index,
+  getSections,
+  getCards,
   createPage,
   createSection,
   createCard,
