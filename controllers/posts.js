@@ -13,6 +13,18 @@ function index(req, res) {
   })
 }
 
+function getReplies(req, res) {
+  Post.findById(req.params.id)
+  .populate('replies')
+  .then(post => {
+    res.json(post.replies)
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
+}
+
 function create(req, res) {
   req.body.author = req.user.profile
   Post.create(req.body)
@@ -67,10 +79,10 @@ function update(req, res) {
 function createReply(req, res) {
   Post.findById(req.params.id)
   .then(post => {
-    post.replies.push(req.body)
+    const newReply = post.replies.push(req.body)
     post.save()
     .then(() => {
-      res.json(post)
+      res.json(post.replies[newReply-1])
     })
   })
   .catch(err => {
@@ -81,6 +93,7 @@ function createReply(req, res) {
 
 export {
   index,
+  getReplies,
   create,
   deletePost as delete,
   update,
